@@ -5,7 +5,7 @@ from time import time
 
 """
 structure de la liste droites[]:
-[(Point(x,y,z),Vecteur(x,y,z)), (Point(x,y,z),Vecteur(x,y,z)), ...from infinite to beyond...]
+[Droite( Point(x,y,z), Vecteur(x,y,z) ), Droite( (Point(x,y,z), Vecteur(x,y,z) ) , ...from infinite to beyond...]
 """
 debut = time()
 droites = []
