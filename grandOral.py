@@ -1,4 +1,4 @@
-from intersec2droites3d import *
+from intersec2droites3d import Point, Vecteur, Droite, sont_secantes
 from random import randint
 from itertools import combinations
 from time import time
