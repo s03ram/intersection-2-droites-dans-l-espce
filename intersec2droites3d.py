@@ -1,11 +1,13 @@
 """
 Source N. Reveret
-Modifié par seram03
+Modifié par s03ram
 Avec l'aide de Verdurin
 """
 
 
 class Point:
+    """un point est défini par trois coordonnées
+    """
     def __init__(self, x, y, z):
         self.x = x
         self.y = y
@@ -19,6 +21,8 @@ class Point:
 
 
 class Vecteur:
+    """un vecteur est défini par trois coordonnées
+    """
     def __init__(self, x, y, z):
         self.x = x
         self.y = y
@@ -37,7 +41,6 @@ class Vecteur:
 class Droite:
     """une droite est définie par un point et un vecteur directeur
     """
-
     def __init__(self, point_origine, vecteur_directeur):
         self.point_origine = point_origine
         self.vecteur_directeur = vecteur_directeur
@@ -54,7 +57,7 @@ def vecteur_depuis_points(a, b):
         Vecteur
     """
     x = b.x - a.x
-    y = b.y - b.y
+    y = b.y - a.y
     z = b.z - a.z
     return Vecteur(x, y, z)
 
@@ -76,7 +79,7 @@ def sont_colineaires(v1, v2):
 
 
 def sont_paralleles(d1, d2):
-    """vérifie que deux droites sont parallèles
+    """vérifie si deux droites sont parallèles
 
     Args:
         d1 (Droite)
@@ -89,6 +92,16 @@ def sont_paralleles(d1, d2):
 
 
 def sont_coplanaires(v1, v2, v3):
+    """vérifie si trois vecteurs sont coplanaires
+
+    Args:
+        v1 (Vecteur)
+        v2 (Vecteur)
+        v3 (Vecteur)
+
+    Returns:
+        bool: True si oui, False sinon
+    """
     a = v1.x*v2.y*v3.z + v2.x*v3.y*v1.z + v3.x*v1.y*v2.z
     b = v1.x*v3.y*v2.z + v3.x*v2.y*v1.z + v2.x*v1.y*v3.z
     return a-b == 0
@@ -108,15 +121,15 @@ def sont_secantes(d1, d2):
     # on vérifie si les droites sont coplanaires
     vecteur_d1 = d1.vecteur_directeur
     vecteur_d2 = d2.vecteur_directeur
-    vecteur_AB = vecteur_depuis_points(d1.point_origine, d2.point_origine)  # on calcule le vecteur entre les points
-                                                                            #    d'origine des deux droites.
-    print("let's go")
+    # on calcule le vecteur entre les points
+    vecteur_AB = vecteur_depuis_points(d1.point_origine, d2.point_origine)
+    #    d'origine des deux droites.
     if sont_coplanaires(vecteur_d1, vecteur_d2, vecteur_AB):
         # on vérifie si les droites sont parallèles
         if sont_paralleles(d1, d2):
             # on vérifie ensuite si elles sont confondues
             if vecteur_AB.x * vecteur_d1.y == vecteur_AB.y * vecteur_d1.x:          # si AB et d1 sont colinéaires alors
-                                                                                    #    les droites sont confondues
+                #    les droites sont confondues
                 return True
             return False
         return True
@@ -131,4 +144,4 @@ if __name__ == '__main__':
     d1 = Droite(A, u1)
     d2 = Droite(B, u2)
 
-    assert sont_secantes(d1, d2)
+    assert (sont_secantes(d1, d2))
